@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 class DetailFragment : Fragment() {
     private var _binding : FragmentDetailBinding? = null
     private val binding get() = _binding!!
+    private var edit = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +29,20 @@ class DetailFragment : Fragment() {
         val dao = SubscribersDatabase.getInstance(application).subscribersDao
 
 
+        val subId = DetailFragmentArgs.fromBundle(requireArguments()).subId
+        if (subId != 0){
+            edit = true
+            GlobalScope.launch{
+                val subscriber = dao.get(subId)
+                binding.subName.setText(subscriber.name)
+                binding.subDate.setText(subscriber.subDate)
+                binding.subEndDate.setText(subscriber.sebEndDate)
+                binding.subPrice.setText(subscriber.subPrice)
+            }
+
+
+        }
+
 
         binding.insertSub.setOnClickListener {
             val name = binding.subName.text.toString()
@@ -35,11 +50,23 @@ class DetailFragment : Fragment() {
             val subEndDate = binding.subEndDate.text.toString()
             val price = binding.subPrice.text.toString()
 
-            val subscriber = Subscriber(name = name, sebEndDate = subEndDate, subDate = subDate, subPrice = price)
-            GlobalScope.launch {
-                dao.insert(subscriber)
-            }
 
+            if (edit){
+                GlobalScope.launch {
+                    val subscriber = dao.get(subId)
+                    subscriber.name = name
+                    subscriber.subDate = subDate
+                    subscriber.sebEndDate = subEndDate
+                    subscriber.subPrice = price
+                    dao.update(subscriber)
+                }
+                edit = false
+            }else{
+                val subscriber = Subscriber(name = name, sebEndDate = subEndDate, subDate = subDate, subPrice = price)
+                GlobalScope.launch {
+                    dao.insert(subscriber)
+                }
+            }
 
         }
 

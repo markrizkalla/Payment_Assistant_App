@@ -24,7 +24,7 @@ interface SubscribersDao {
 
 
     @Query("SELECT * FROM gym_table WHERE subscriber_id = :subscriber_id")
-    fun get(subscriber_id: Int) : LiveData<Subscriber>
+    fun get(subscriber_id: Int) : Subscriber
 
     @Query("SELECT * FROM gym_table")
     fun getAll() : LiveData<List<Subscriber>>
