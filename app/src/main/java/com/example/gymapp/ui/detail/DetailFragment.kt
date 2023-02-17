@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
+import com.example.gymapp.R
 import com.example.gymapp.database.PaymentsDatabase
 import com.example.gymapp.database.SubscribersDatabase
 import com.example.gymapp.databinding.FragmentDetailBinding
@@ -70,6 +73,7 @@ class DetailFragment : Fragment() {
                     paymentDao.update(payment)
                 }
                 edit = false
+
             }else{
                 val subscriber = Subscriber(name = name, sebEndDate = subEndDate, subDate = subDate, subPrice = price)
                 val payment = Payment(subscriber_id = subscriber.subscriber_id,name=name,subDate=subDate, subPrice = price)
@@ -79,7 +83,11 @@ class DetailFragment : Fragment() {
                 }
             }
 
+            view.findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
+
         }
+
+
 
 
         return view

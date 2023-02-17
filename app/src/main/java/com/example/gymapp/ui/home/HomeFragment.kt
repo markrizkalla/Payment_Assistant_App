@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gymapp.R
 import com.example.gymapp.adapter.SubsAdapter
@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
 
 
         binding.editFAB.setOnClickListener {
-            this.findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+            homeViewModel.navigate(view)
         }
 
 
