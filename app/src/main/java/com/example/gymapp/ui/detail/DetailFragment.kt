@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.gymapp.database.PaymentsDatabase
 import com.example.gymapp.database.SubscribersDatabase
 import com.example.gymapp.databinding.FragmentDetailBinding
+import com.example.gymapp.model.Payment
 import com.example.gymapp.model.Subscriber
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,20 +28,20 @@ class DetailFragment : Fragment() {
         val view = binding.root
 
         val application = requireNotNull(this.activity).application
-        val dao = SubscribersDatabase.getInstance(application).subscribersDao
+        val subscribersDao = SubscribersDatabase.getInstance(application).subscribersDao
+        val paymentDao = PaymentsDatabase.getInstance(application).paymentDao
 
 
         val subId = DetailFragmentArgs.fromBundle(requireArguments()).subId
-        if (subId != 0){
+        if (subId != -1){
             edit = true
             GlobalScope.launch{
-                val subscriber = dao.get(subId)
+                val subscriber = subscribersDao.get(subId)
                 binding.subName.setText(subscriber.name)
                 binding.subDate.setText(subscriber.subDate)
                 binding.subEndDate.setText(subscriber.sebEndDate)
                 binding.subPrice.setText(subscriber.subPrice)
             }
-
 
         }
 
@@ -53,18 +55,27 @@ class DetailFragment : Fragment() {
 
             if (edit){
                 GlobalScope.launch {
-                    val subscriber = dao.get(subId)
+                    val subscriber = subscribersDao.get(subId)
+                    val payment = paymentDao.get(subId)
+
+                    payment.name = name
+                    payment.subDate = subDate
+                    payment.subPrice = price
+
                     subscriber.name = name
                     subscriber.subDate = subDate
                     subscriber.sebEndDate = subEndDate
                     subscriber.subPrice = price
-                    dao.update(subscriber)
+                    subscribersDao.update(subscriber)
+                    paymentDao.update(payment)
                 }
                 edit = false
             }else{
                 val subscriber = Subscriber(name = name, sebEndDate = subEndDate, subDate = subDate, subPrice = price)
+                val payment = Payment(subscriber_id = subscriber.subscriber_id,name=name,subDate=subDate, subPrice = price)
                 GlobalScope.launch {
-                    dao.insert(subscriber)
+                    subscribersDao.insert(subscriber)
+                    paymentDao.insert(payment)
                 }
             }
 

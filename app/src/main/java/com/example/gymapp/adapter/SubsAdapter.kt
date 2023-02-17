@@ -29,7 +29,8 @@ class SubsAdapter(val context: Context, val subList: List<Subscriber>) : Recycle
 
         holder.itemView.setOnClickListener {
             val id = subscriber.subscriber_id
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+            action.subId = id
             holder.itemView.findNavController().navigate(action)
         }
     }

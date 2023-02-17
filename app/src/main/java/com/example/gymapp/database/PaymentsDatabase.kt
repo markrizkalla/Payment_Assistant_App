@@ -4,27 +4,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.gymapp.dao.SubscribersDao
-import com.example.gymapp.model.Subscriber
+import com.example.gymapp.dao.PaymentDao
+import com.example.gymapp.model.Payment
 
-@Database(entities = [Subscriber::class] , version = 1, exportSchema = false)
-abstract class SubscribersDatabase : RoomDatabase() {
+@Database(entities = [Payment::class], version = 1, exportSchema = false)
+abstract class PaymentsDatabase :RoomDatabase() {
 
-    abstract val subscribersDao: SubscribersDao
+    abstract val paymentDao:PaymentDao
 
     companion object{
         @Volatile
-        private var INSTANCE: SubscribersDatabase? = null
+        private var INSTANCE: PaymentsDatabase? = null
 
-        fun getInstance(context: Context):SubscribersDatabase{
+        fun getInstance(context: Context):PaymentsDatabase{
             synchronized(this){
                 var instance = INSTANCE
 
                 if(instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        SubscribersDatabase::class.java,
-                        "gym_database"
+                        PaymentsDatabase::class.java,
+                        "payment_database"
                     ).build()
                     INSTANCE = instance
                 }

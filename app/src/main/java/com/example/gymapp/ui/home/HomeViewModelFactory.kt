@@ -2,7 +2,7 @@ package com.example.gymapp.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.gymapp.database.SubscribersDao
+import com.example.gymapp.dao.SubscribersDao
 
 class HomeViewModelFactory(private val dao: SubscribersDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
