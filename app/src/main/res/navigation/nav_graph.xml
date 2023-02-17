@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.gymapp.HomeFragment"
+        android:name="com.example.gymapp.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,12 +16,16 @@
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.example.gymapp.PaymentFragment"
+        android:name="com.example.gymapp.ui.payment.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.gymapp.DetailFragment"
+        android:name="com.example.gymapp.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="subId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

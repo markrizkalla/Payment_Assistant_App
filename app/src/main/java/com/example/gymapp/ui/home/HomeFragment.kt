@@ -1,19 +1,18 @@
-package com.example.gymapp
+package com.example.gymapp.ui.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gymapp.R
 import com.example.gymapp.adapter.SubsAdapter
 import com.example.gymapp.database.SubscribersDatabase
 import com.example.gymapp.databinding.FragmentHomeBinding
-import com.example.gymapp.model.Subscriber
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -21,7 +20,6 @@ class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: SubsAdapter
-    private lateinit var subscribers :List<Subscriber>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,19 +31,25 @@ class HomeFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dao = SubscribersDatabase.getInstance(application).subscribersDao
 
+        val homeViewModelFactory = HomeViewModelFactory(dao)
+        val homeViewModel = ViewModelProvider(this,homeViewModelFactory).get(HomeViewModel::class.java)
+
+
 
 
         binding.editFAB.setOnClickListener {
             this.findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
         }
 
-        GlobalScope.launch {
-             subscribers = dao.getAll()
-            adapter = SubsAdapter(application,subscribers)
-            binding.recyclerView.adapter = adapter
-        }
+
 
         binding.recyclerView.layoutManager = LinearLayoutManager(application)
+        homeViewModel.subLists.observe(viewLifecycleOwner, Observer {
+            it.let {
+                adapter = SubsAdapter(application,it)
+                binding.recyclerView.adapter = adapter
+            }
+        })
 
         return view
     }

@@ -33,7 +33,5 @@ class SubsAdapter(val context: Context, val subList: List<Subscriber>) : Recycle
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
         val name = itemView.findViewById<TextView>(R.id.name)
         val date = itemView.findViewById<TextView>(R.id.endDate)
-
-
     }
 }
