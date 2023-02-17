@@ -9,6 +9,6 @@ class HomeViewModelFactory(private val dao: SubscribersDao) : ViewModelProvider.
         if(modelClass.isAssignableFrom(HomeViewModel::class.java)){
             return HomeViewModel(dao) as T
         }
-        throw IllegalArgumentException("Unkown ViewModel")
+        throw IllegalArgumentException("Unknown ViewModel")
     }
 }

@@ -25,5 +25,5 @@ interface PaymentDao {
     fun get(subscriber_id: Int) : Payment
 
     @Query("SELECT * FROM payment_table")
-    fun getAll() : List<Payment>
+    fun getAll() : LiveData<List<Payment>>
 }
