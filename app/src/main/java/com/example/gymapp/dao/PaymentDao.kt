@@ -22,7 +22,7 @@ interface PaymentDao {
     suspend fun delete(payment: Payment)
 
     @Query("SELECT * FROM payment_table WHERE subscriber_id = :subscriber_id")
-    fun get(subscriber_id: Int) : Payment
+    fun get(subscriber_id: Int) : LiveData<Payment>
 
     @Query("SELECT * FROM payment_table")
     fun getAll() : LiveData<List<Payment>>
