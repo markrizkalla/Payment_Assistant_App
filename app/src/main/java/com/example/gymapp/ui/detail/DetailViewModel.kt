@@ -54,4 +54,13 @@ class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: Paymen
         }
     }
 
+    fun delete(){
+        viewModelScope.launch {
+            subscribersDao.delete(subscriber.value!!)
+        }
+        viewModelScope.launch {
+            paymentDao.delete(payment.value!!)
+        }
+    }
+
 }

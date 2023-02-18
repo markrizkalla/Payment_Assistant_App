@@ -43,6 +43,7 @@ class DetailFragment : Fragment() {
 
         if (subId != -1){
             binding.insertSub.text = "Update"
+            binding.deleteButton.visibility= View.VISIBLE
             detailViewModel._edit.value = true
             detailViewModel.subscriber.observe(viewLifecycleOwner, Observer {
                 binding.subName.setText(it.name)
@@ -53,8 +54,13 @@ class DetailFragment : Fragment() {
             detailViewModel.payment.observe(viewLifecycleOwner, Observer {
 
             })
+
         }
 
+        binding.deleteButton.setOnClickListener {
+            detailViewModel.delete()
+            view.findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
+        }
         binding.insertSub.setOnClickListener {
             val name = binding.subName.text.toString()
             val subDate = binding.subDate.text.toString()
