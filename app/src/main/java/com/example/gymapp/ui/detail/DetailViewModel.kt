@@ -1,7 +1,5 @@
 package com.example.gymapp.ui.detail
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +12,9 @@ import com.example.gymapp.model.SubscribersWithPayments
 import kotlinx.coroutines.*
 
 class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: PaymentDao, var id:Int) :ViewModel() {
+
+    private val _navigateToHome = MutableLiveData<Boolean>(false)
+    val navigateToHome: LiveData<Boolean>  get() = _navigateToHome
 
     val _edit = MutableLiveData<Boolean>(false)
     private val edit : LiveData<Boolean> get() = _edit
@@ -35,12 +36,6 @@ class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: Paymen
                 subscribersDao.update(subscriber.value!!)
             }
 
-//            viewModelScope.launch {
-//                payment.value?.name = name
-//                payment.value?.subDate = startDate
-//                payment.value?.subPrice = price
-//                paymentDao.update(payment.value!!)
-//            }
         }else {
             val newSubscriber =
                 Subscriber(name = name, sebEndDate = endDate, subDate = startDate, subPrice = price)
@@ -62,9 +57,7 @@ class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: Paymen
         viewModelScope.launch {
             subscribersDao.delete(subscriber.value!!)
         }
-        viewModelScope.launch {
-            //paymentDao.delete(payment.value!!)
-        }
+        _navigateToHome.value = true
     }
 
     fun pay(){
@@ -76,6 +69,7 @@ class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: Paymen
         viewModelScope.launch {
             paymentDao.insert(newPayment)
         }
+        _navigateToHome.value = true
     }
 
     fun history() : LiveData<SubscribersWithPayments?> {
@@ -84,7 +78,10 @@ class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: Paymen
 
         }
         return history
+    }
 
+    fun onNavigateToHome(){
+        _navigateToHome.value = false
     }
 
 }

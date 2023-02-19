@@ -43,6 +43,9 @@ class DetailFragment : Fragment() {
         val detailViewModelFactory = DetailViewModelFactory(subscribersDao,paymentDao,subId)
         val detailViewModel = ViewModelProvider(this,detailViewModelFactory).get(DetailViewModel::class.java)
 
+        binding.detailViewModel = detailViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
         if (subId != -1){
             binding.insertSub.text = "Update"
             binding.historyButton.visibility = View.VISIBLE
@@ -59,10 +62,6 @@ class DetailFragment : Fragment() {
 
         }
 
-        binding.payButton.setOnClickListener {
-            detailViewModel.pay()
-            view.findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
-        }
 
         binding.historyButton.setOnClickListener {
             var history =  detailViewModel.history()
@@ -90,10 +89,7 @@ class DetailFragment : Fragment() {
 
         }
 
-        binding.deleteButton.setOnClickListener {
-            detailViewModel.delete()
-            view.findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
-        }
+
         binding.insertSub.setOnClickListener {
             val name = binding.subName.text.toString()
             val subDate = binding.subDate.text.toString()
@@ -104,6 +100,13 @@ class DetailFragment : Fragment() {
 
             view.findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
         }
+
+        detailViewModel.navigateToHome.observe(viewLifecycleOwner, Observer { navigate ->
+            if(navigate){
+                view.findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
+                detailViewModel.onNavigateToHome()
+            }
+        })
         return view
     }
 
