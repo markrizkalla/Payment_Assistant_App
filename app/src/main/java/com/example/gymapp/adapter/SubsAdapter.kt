@@ -27,6 +27,7 @@ class SubsAdapter(val context: Context, val subList: List<Subscriber>) : Recycle
         val subscriber = subList[position]
         holder.name.text = subscriber.name
         holder.date.text = subscriber.sebEndDate
+        holder.price.text = subscriber.subPrice
 
         holder.itemView.setOnClickListener {
             val id = subscriber.subscriber_id
@@ -43,5 +44,6 @@ class SubsAdapter(val context: Context, val subList: List<Subscriber>) : Recycle
     class ViewHolder(binding: SubItemBinding) :RecyclerView.ViewHolder(binding.root){
         val name = binding.name
         val date = binding.endDate
+        val price = binding.price
     }
 }

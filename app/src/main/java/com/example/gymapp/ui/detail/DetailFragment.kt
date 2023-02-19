@@ -78,8 +78,6 @@ class DetailFragment : Fragment() {
             dialog.show()
 
         }
-
-
         binding.insertSub.setOnClickListener {
             val name = binding.subName.text.toString()
             val subDate = binding.subDate.text.toString()

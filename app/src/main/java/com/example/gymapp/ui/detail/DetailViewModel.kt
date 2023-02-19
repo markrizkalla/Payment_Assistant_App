@@ -13,6 +13,7 @@ import kotlinx.coroutines.*
 
 class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: PaymentDao, var id:Int) :ViewModel() {
 
+
     private val _navigateToHome = MutableLiveData<Boolean>(false)
     val navigateToHome: LiveData<Boolean>  get() = _navigateToHome
 
@@ -83,5 +84,7 @@ class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: Paymen
     fun onNavigateToHome(){
         _navigateToHome.value = false
     }
+
+
 
 }
