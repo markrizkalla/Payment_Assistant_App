@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gymapp.R
+import com.example.gymapp.databinding.SubItemBinding
 import com.example.gymapp.model.Subscriber
 import com.example.gymapp.ui.home.HomeFragmentDirections
 
@@ -17,13 +18,13 @@ class SubsAdapter(val context: Context, val subList: List<Subscriber>) : Recycle
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.sub_item,parent,false)
-
-        return ViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = SubItemBinding.inflate(layoutInflater,parent,false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var subscriber = subList[position]
+        val subscriber = subList[position]
         holder.name.text = subscriber.name
         holder.date.text = subscriber.sebEndDate
 
@@ -39,8 +40,8 @@ class SubsAdapter(val context: Context, val subList: List<Subscriber>) : Recycle
         return subList.size
     }
 
-    class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        val name = itemView.findViewById<TextView>(R.id.name)
-        val date = itemView.findViewById<TextView>(R.id.endDate)
+    class ViewHolder(binding: SubItemBinding) :RecyclerView.ViewHolder(binding.root){
+        val name = binding.name
+        val date = binding.endDate
     }
 }

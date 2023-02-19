@@ -34,14 +34,9 @@ class HomeFragment : Fragment() {
         val homeViewModelFactory = HomeViewModelFactory(dao)
         val homeViewModel = ViewModelProvider(this,homeViewModelFactory).get(HomeViewModel::class.java)
 
-
-
-
         binding.editFAB.setOnClickListener {
             homeViewModel.navigate(view)
         }
-
-
 
         binding.recyclerView.layoutManager = LinearLayoutManager(application)
         homeViewModel.subLists.observe(viewLifecycleOwner, Observer {
@@ -50,10 +45,8 @@ class HomeFragment : Fragment() {
                 binding.recyclerView.adapter = adapter
             }
         })
-
         return view
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
