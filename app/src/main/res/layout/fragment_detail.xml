@@ -113,4 +113,29 @@
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/insertSub"
         app:layout_constraintTop_toBottomOf="@+id/subPrice" />
+
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="64dp"
+        android:backgroundTint="#009308"
+        android:text="Pay"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertSub" />
+
+    <Button
+        android:id="@+id/historyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="52dp"
+        android:text="History"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payButton" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

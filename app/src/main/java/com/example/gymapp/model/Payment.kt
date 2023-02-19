@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "payment_table")
 data class Payment(
-    @PrimaryKey(autoGenerate = true)
     var subscriber_id :Int = 0,
     var name : String,
     @ColumnInfo(name = "subscribe_date")
@@ -15,4 +14,8 @@ data class Payment(
     @ColumnInfo(name = "subscribe_price")
     var subPrice: String
 
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var paymentId:Int = 0
+
+}

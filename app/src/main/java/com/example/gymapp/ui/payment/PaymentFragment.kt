@@ -8,14 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gymapp.R
 import com.example.gymapp.adapter.PaymentAdapter
-import com.example.gymapp.adapter.SubsAdapter
-import com.example.gymapp.database.PaymentsDatabase
 import com.example.gymapp.database.SubscribersDatabase
 import com.example.gymapp.databinding.FragmentPaymentBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class PaymentFragment : Fragment() {
@@ -31,7 +26,7 @@ class PaymentFragment : Fragment() {
         val view = binding.root
 
         val application = requireNotNull(this.activity).application
-        val paymentDao = PaymentsDatabase.getInstance(application).paymentDao
+        val paymentDao = SubscribersDatabase.getInstance(application).paymentDao
 
         val viewModelFactory = PaymentViewModelFactory(paymentDao)
         val viewModel = ViewModelProvider(this,viewModelFactory).get(PaymentViewModel::class.java)

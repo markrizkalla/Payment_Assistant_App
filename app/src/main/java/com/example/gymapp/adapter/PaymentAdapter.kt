@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.gymapp.R
 import com.example.gymapp.model.Payment
 
-class PaymentAdapter(private val context: Context,private val payments : List<Payment>) : RecyclerView.Adapter<PaymentAdapter.ViewHolder>() {
+class PaymentAdapter(private val context: Context, private val payments: List<Payment>) : RecyclerView.Adapter<PaymentAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.payment_item,parent,false)

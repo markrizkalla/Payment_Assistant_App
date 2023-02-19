@@ -5,8 +5,10 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.example.gymapp.model.Subscriber
+import com.example.gymapp.model.SubscribersWithPayments
 
 @Dao
 interface SubscribersDao {
@@ -28,4 +30,8 @@ interface SubscribersDao {
 
     @Query("SELECT * FROM gym_table")
     fun getAll() : LiveData<List<Subscriber>>
+
+    @Transaction
+    @Query("SELECT * FROM gym_table WHERE subscriber_id = :subscriber_id")
+    fun getSubscribersWithPaymentsById(subscriber_id: Int):SubscribersWithPayments
 }

@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.gymapp.dao.PaymentDao
 import com.example.gymapp.model.Payment
+import com.example.gymapp.model.Subscriber
 
-@Database(entities = [Payment::class], version = 1, exportSchema = false)
+@Database(entities = [Payment::class,Subscriber::class], version = 2, exportSchema = false)
 abstract class PaymentsDatabase :RoomDatabase() {
 
     abstract val paymentDao:PaymentDao
@@ -25,7 +26,7 @@ abstract class PaymentsDatabase :RoomDatabase() {
                         context.applicationContext,
                         PaymentsDatabase::class.java,
                         "payment_database"
-                    ).build()
+                    ).fallbackToDestructiveMigration().build()
                     INSTANCE = instance
                 }
                 return instance

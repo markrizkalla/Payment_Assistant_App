@@ -4,13 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.gymapp.dao.PaymentDao
 import com.example.gymapp.dao.SubscribersDao
+import com.example.gymapp.model.Payment
 import com.example.gymapp.model.Subscriber
 
-@Database(entities = [Subscriber::class] , version = 1, exportSchema = false)
+@Database(entities = [Subscriber::class,Payment::class] , version = 2, exportSchema = false)
 abstract class SubscribersDatabase : RoomDatabase() {
 
     abstract val subscribersDao: SubscribersDao
+    abstract val paymentDao:PaymentDao
 
     companion object{
         @Volatile
@@ -25,7 +28,7 @@ abstract class SubscribersDatabase : RoomDatabase() {
                         context.applicationContext,
                         SubscribersDatabase::class.java,
                         "gym_database"
-                    ).build()
+                    ).fallbackToDestructiveMigration().build()
                     INSTANCE = instance
                 }
                 return instance
