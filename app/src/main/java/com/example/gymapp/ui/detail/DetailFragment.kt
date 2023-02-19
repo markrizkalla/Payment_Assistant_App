@@ -52,19 +52,11 @@ class DetailFragment : Fragment() {
             binding.deleteButton.visibility= View.VISIBLE
             binding.payButton.visibility = View.VISIBLE
             detailViewModel._edit.value = true
-            detailViewModel.subscriber.observe(viewLifecycleOwner, Observer {
-                binding.subName.setText(it.name)
-                binding.subDate.setText(it.subDate)
-                binding.subEndDate.setText(it.sebEndDate)
-                binding.subPrice.setText(it.subPrice)
-            })
-
 
         }
 
 
         binding.historyButton.setOnClickListener {
-            var history =  detailViewModel.history()
             val inflater = this.layoutInflater
             val dialogView = inflater.inflate(R.layout.user_payment_dialog, null)
             val builder = AlertDialog.Builder(requireActivity(), R.style.Theme_GymApp)
@@ -80,8 +72,6 @@ class DetailFragment : Fragment() {
 
             })
 
-
-            Toast.makeText(application,history.toString(),Toast.LENGTH_SHORT).show()
             builder.setView(dialogView)
             dialog = builder.create()
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.CYAN))
