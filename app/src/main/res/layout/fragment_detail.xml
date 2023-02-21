@@ -25,18 +25,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/subName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:text="@={detailViewModel.subscriber.name}"
-        android:hint="subscriber name"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/subName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:hint="subscriber name"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="@={detailViewModel.subscriber.name}"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -58,29 +59,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <EditText
-        android:id="@+id/subEndDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:text="@={detailViewModel.subscriber.sebEndDate}"
-        android:inputType="date"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/subDate" />
+        <EditText
+            android:id="@+id/subEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:text="@={detailViewModel.subscriber.sebEndDate}"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/subDate" />
 
-    <EditText
-        android:id="@+id/subDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:text="@={detailViewModel.subscriber.subDate}"
-        android:inputType="date"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/subName" />
+        <EditText
+            android:id="@+id/subDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:text="@={detailViewModel.subscriber.subDate}"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/subName" />
 
     <TextView
         android:id="@+id/textView4"
@@ -92,65 +95,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <EditText
-        android:id="@+id/subPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:text="@={detailViewModel.subscriber.subPrice}"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/subEndDate" />
+        <EditText
+            android:id="@+id/subPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:text="@={detailViewModel.subscriber.subPrice}"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/subEndDate" />
 
-    <Button
-        android:id="@+id/insertSub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="64dp"
-        android:text="Insert"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subPrice" />
+        <Button
+            android:id="@+id/insertSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="28dp"
+            android:text="Insert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subPrice" />
 
-    <Button
-        android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:backgroundTint="#FF0000"
-        android:layout_marginEnd="12dp"
-        android:text="DELETE"
-        android:onClick="@{() -> detailViewModel.delete()}"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/insertSub"
-        app:layout_constraintTop_toBottomOf="@+id/subPrice" />
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="#FF0000"
+            android:onClick="@{() -> detailViewModel.delete()}"
+            android:text="DELETE"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/payButton"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <Button
-        android:id="@+id/payButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="64dp"
-        android:backgroundTint="#009308"
-        android:text="Pay"
-        android:onClick="@{() -> detailViewModel.pay()}"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insertSub" />
+        <Button
+            android:id="@+id/payButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#009308"
+            android:onClick="@{() -> detailViewModel.pay()}"
+            android:text="Pay"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/insertSub"
+            app:layout_constraintTop_toBottomOf="@+id/subPrice" />
 
-    <Button
-        android:id="@+id/historyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="52dp"
-        android:text="History"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payButton" />
-
+        <Button
+            android:id="@+id/historyButton"
+            android:layout_width="229dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="36dp"
+            android:gravity="center"
+            android:text="History"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

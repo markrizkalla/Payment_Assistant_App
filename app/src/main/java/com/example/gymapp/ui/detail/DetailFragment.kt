@@ -74,7 +74,7 @@ class DetailFragment : Fragment() {
 
             builder.setView(dialogView)
             dialog = builder.create()
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.CYAN))
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
             dialog.show()
 
         }
