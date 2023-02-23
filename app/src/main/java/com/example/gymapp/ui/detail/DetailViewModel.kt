@@ -1,9 +1,12 @@
 package com.example.gymapp.ui.detail
 
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.gymapp.Myapp
 import com.example.gymapp.dao.PaymentDao
 import com.example.gymapp.dao.SubscribersDao
 import com.example.gymapp.model.Payment
@@ -70,6 +73,9 @@ class DetailViewModel(val subscribersDao: SubscribersDao,val  paymentDao: Paymen
         viewModelScope.launch {
             paymentDao.insert(newPayment)
         }
+
+
+
         _navigateToHome.value = true
     }
 

@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gymapp.NotificationService
 import com.example.gymapp.R
 import com.example.gymapp.adapter.PaymentAdapter
 import com.example.gymapp.database.SubscribersDatabase
@@ -87,6 +88,11 @@ class DetailFragment : Fragment() {
             detailViewModel.update(name,subDate,subEndDate,price)
 
             view.findNavController().navigate(R.id.action_detailFragment_to_homeFragment)
+        }
+        binding.payButton.setOnClickListener {
+            detailViewModel.pay()
+            val service = NotificationService(application)
+            service.showNotification(binding.subName.text.toString())
         }
 
         detailViewModel.navigateToHome.observe(viewLifecycleOwner, Observer { navigate ->

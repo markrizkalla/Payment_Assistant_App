@@ -138,7 +138,6 @@
             android:layout_marginTop="68dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="#009308"
-            android:onClick="@{() -> detailViewModel.pay()}"
             android:text="Pay"
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/insertSub"
